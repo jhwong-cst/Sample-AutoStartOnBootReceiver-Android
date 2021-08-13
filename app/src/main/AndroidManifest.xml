@@ -24,6 +24,19 @@
         <receiver android:name=".StartActivityOnBootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <!-- Android 8.0+ prevents BOOT_COMPLETED from being usable.
+                So we have to resort to other means. Later versions of Android as well
+                as individual devices / custom OS each have their own individual restrictions
+                so the solution to implement auto-start would differ by device & OS.
+
+                Sometimes we will have to add extra intents, as well as allow/configure the
+                application on the OS level (outside app). Occasionally it might be just
+                impossible if the block all avenues on a hardware/OS level.
+
+                -->
+
+                <!-- OS 8.1 : API 27 Default -->
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
